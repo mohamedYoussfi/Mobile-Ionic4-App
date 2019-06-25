@@ -1,14 +1,27 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>
-      Ionic Blank
+      Home
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+   <ion-card>
+     <ion-card-header>
+       <ion-card-title>ENSET Mohammedia</ion-card-title>
+     </ion-card-header>
+     <ion-card-content>
+       <ion-img [src]="contact.logo"></ion-img>
+       <ion-list>
+         <ion-item>Name:<strong>{{contact.name}}</strong></ion-item>
+         <ion-item>Email:<strong>{{contact.email}}</strong></ion-item>
+         <ion-item>Tel:<strong>{{contact.tel}}</strong></ion-item>
+       </ion-list>
+       <ion-img [src]="contact.location"></ion-img>
+     </ion-card-content>
+   </ion-card>
 </ion-content>

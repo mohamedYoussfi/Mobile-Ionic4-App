@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Meteo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Ville:</ion-label>
+        <ion-input type="text" [(ngModel)]="city"></ion-input>
+        <ion-button (click)="onLoadMeteo()">OK</ion-button>
+      </ion-item>
+    </ion-card-content>
+    <ion-card *ngIf="dataMeteo">
+      <ion-card-content>
+        <ion-item>
+          <ion-label>
+            City: <strong>{{dataMeteo.city.name}}</strong>,
+            Country: <strong>{{dataMeteo.city.country}}</strong>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Long: <strong>{{dataMeteo.city.coord.lon}}</strong>,
+            Lat: <strong>{{dataMeteo.city.coord.lat}}</strong>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Polulation: <strong>{{dataMeteo.city.population|number:'0.0'}}</strong></ion-label>
+        </ion-item>
+      </ion-card-content>
+      <ion-card *ngIf="dataMeteo">
+        <ion-card-content>
+          <ion-list>
+            <ion-item *ngFor="let m of dataMeteo.list">
+              <ion-avatar slot="start">
+                <ion-img src="assets/images/{{m.weather[0].main}}.png"></ion-img>
+              </ion-avatar>
+              <ion-list>
+                <ion-item><strong>{{m.dt*1000|date:'dd/MM/yyyy-HH-mm'}}</strong></ion-item>
+                <ion-item>Min:<strong>{{m.main.temp_min-273.15 |number:'0.0'}}</strong>,
+                  Max : <strong> {{m.main.temp_max-273.15 |number:'0.0'}}</strong></ion-item>
+                <ion-item>Pre:<strong>{{m.main.pressure |number:'0.0'}}</strong>,
+                  Hum : <strong> {{m.main.humidity|number:'0.0'}}</strong></ion-item>
+              </ion-list>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-card>
+  </ion-card>
+</ion-content>
